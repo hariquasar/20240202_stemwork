@@ -18,9 +18,6 @@ def check_acc_nmb(num):
     fpin.close()
     return
 
-def home_return(master):
-    master.destroy()
-    Main_Menu()
 
 def write(master,name,oc,pin):
     if((is_number(name)) or (is_number(pin) == 0) or name==""):
@@ -50,31 +47,6 @@ def write(master,name,oc,pin):
     frec.close()
 
     messagebox.showinfo("Details", "Your Account number is:"+str(accnt_no))
-    master.destroy()
-    return
-
-def crdt_write(master, amt, accnt, name):
-    if(is_number(amt) == 0):
-        messagebox.showinfo("Error", "Invaild Number\nTry Again")
-        master.destroy()
-        return
-    
-    fdet = open(accnt+".txt", "r")
-    pin = fdet.readline()
-    camt = int(fdet.readline())
-    fdet.close()
-    amti = int(amt)
-    cb = amti + camt
-    fdet = open(accnt+".txt","w")
-    fdet.write(pin)
-    fdet.write(str(cb)+"\n")
-    fdet.write(accnt+"\n")
-    fdet.write(name+"\n")
-    fdet.close()
-    frec = open(str(accnt) + "-rec.txt", "w")
-    frec.write(str(strftime("[%Y - %m - %d] [%H:%M:%S]",gmtime()))+"    "+str(amti)+"      "+str(cb)+"\n")
-    frec.close()
-    messagebox.showinfo("Succesful!!", "Amount Credited!")
     master.destroy()
     return
 
